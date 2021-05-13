@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
@@ -32,6 +33,8 @@ public class RegisterController  {
     private TextField txtPassword;
     @FXML
     private ChoiceBox<String> choiceBox;
+    @FXML
+    private Label lblStatus;
 
     @FXML
     private void initialize (){
@@ -50,7 +53,7 @@ public class RegisterController  {
 
         if(FirstName.isEmpty() || LastName.isEmpty() || PhoneNumber.isEmpty() ||
         Email.isEmpty() || UserName.isEmpty() || Password.isEmpty() || (!role.equals("Admin") && !role.equals("Customer"))){
-            JOptionPane.showMessageDialog(null, "All fields must be completed or you must choose a role!");
+            lblStatus.setText("All fields must be completed or you must choose a role!");
         }
         else{
         JSONObject userDetails = new JSONObject();
@@ -60,7 +63,7 @@ public class RegisterController  {
             FileReader file = new FileReader("src/main/resources/DataBase/UserData.json");
             jrr = (JSONArray) jp.parse(file);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error occured");
+            lblStatus.setText("Error!");
         }
         userDetails.put("FirstName", FirstName);
         userDetails.put("LastName", LastName);
@@ -79,11 +82,10 @@ public class RegisterController  {
             file.write(jrr.toJSONString());
             file.close();
 
-            JOptionPane.showMessageDialog(null, "Registration Complete! Please Login!");
-            Stage stage = (Stage) registerButton.getScene().getWindow();
-            stage.close();
+            lblStatus.setText("Register complete! Please Login!");
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error occured");
+            lblStatus.setText("Error!");
         }}
     }
 

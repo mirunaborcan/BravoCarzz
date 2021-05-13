@@ -3,7 +3,11 @@ package org.openjfx;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
@@ -34,6 +38,10 @@ public class addCarController {
     private ChoiceBox<String> Alimentation;
     @FXML
     private ChoiceBox<String> Gearbox;
+    @FXML
+    private Label lblStatus;
+    @FXML
+    private javafx.scene.control.Button cancelButton;
 
     @FXML
     private void initialize (){
@@ -57,7 +65,7 @@ public class addCarController {
         if(Brand.isEmpty() || Model.isEmpty() || Year.isEmpty() || RegNr.isEmpty()|| Description.isEmpty() || EnginePower.isEmpty() ||
                 (!AlimentationType.equals("Diesel") && !AlimentationType.equals("Gasoline") && !AlimentationType.equals("Electric")) ||
                 (!GearBoxType.equals("Manual") && !GearBoxType.equals("Automatic"))){
-            JOptionPane.showMessageDialog(null, "All fields must be completed and you must choose an alimentation and a gearbox type!");
+            lblStatus.setText("All fields must be completed!");
         }
         else{
             JSONObject carDetails = new JSONObject();
@@ -67,7 +75,7 @@ public class addCarController {
                 FileReader file = new FileReader("src/main/resources/DataBase/CarsData.json");
                 jrr = (JSONArray) jp.parse(file);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error occured");
+                lblStatus.setText("Error!");
             }
             carDetails.put("Brand", Brand);
             carDetails.put("Model", Model);
@@ -88,11 +96,17 @@ public class addCarController {
                 file.write(jrr.toJSONString());
                 file.close();
 
-                JOptionPane.showMessageDialog(null, "Car added!");
+                lblStatus.setText("Car Added!");
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error occured");
+                lblStatus.setText("Error!");
             }}
+    }
+
+    public void Cancel (javafx.event.ActionEvent actionEvent) throws Exception {
+
+        Stage closeLogin = (Stage) cancelButton.getScene().getWindow();
+        closeLogin.close();
     }
 
 }
