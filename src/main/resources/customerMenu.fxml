@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="400.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.customerMenuController">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ed1c24;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="viewCarsButton" layoutX="25.0" layoutY="108.0" mnemonicParsing="false" onAction="#customerButton" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #d41118;" text="View Cars" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="myListButton" layoutX="-1.0" layoutY="170.0" mnemonicParsing="false" onAction="#customerButton" prefHeight="46.0" prefWidth="176.0" style="-fx-background-color: #d41118;" text="My List" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="rentCarButton" layoutX="26.0" layoutY="231.0" mnemonicParsing="false" onAction="#customerButton" prefHeight="46.0" prefWidth="150.0" style="-fx-background-color: #d41118;" text="Rent a Car" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="18.0" />
+               </font>
+            </Button>
+            <Text fill="#ffecec" layoutX="-2.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logged in as Customer" textAlignment="CENTER" wrappingWidth="203.13671875">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="13.0" />
+               </font>
+            </Text>
+            <Button fx:id="logOutButton" layoutX="45.0" layoutY="381.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #d41118;" text="Log Out" textFill="WHITE" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="32.0">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="pn_viewCars" prefHeight="406.0" prefWidth="537.0" style="-fx-background-color: blue;" />
+            <Pane fx:id="pn_myList" prefHeight="406.0" prefWidth="533.0" style="-fx-background-color: green;" />
+            <Pane fx:id="pn_RentCar" prefHeight="406.0" prefWidth="536.0" style="-fx-background-color: purple;" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
