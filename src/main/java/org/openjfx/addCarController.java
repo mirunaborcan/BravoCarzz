@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+import java.util.Random;
 import javax.swing.*;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -77,6 +77,9 @@ public class addCarController {
             } catch (Exception ex) {
                 lblStatus.setText("Error!");
             }
+            Random rand = new Random();
+            int ID = rand.nextInt(1000);
+            carDetails.put("Id", ID);
             carDetails.put("Brand", Brand);
             carDetails.put("Model", Model);
             carDetails.put("Year", Year);
