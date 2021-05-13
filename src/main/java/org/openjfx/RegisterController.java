@@ -79,7 +79,7 @@ public class RegisterController  {
             file.write(jrr.toJSONString());
             file.close();
 
-            JOptionPane.showMessageDialog(null, "Registration complete! Please login!");
+            JOptionPane.showMessageDialog(null, "Registration Complete! Please Login!");
             Stage stage = (Stage) registerButton.getScene().getWindow();
             stage.close();
         } catch (Exception ex) {
