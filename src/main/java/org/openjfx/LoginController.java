@@ -61,8 +61,6 @@ public class LoginController {
         String Pass = (String) userObject.get("Password");
         String role = (String) userObject.get("role");
 
-
-
         if (UserName.equals(txtUserName.getText()) && Pass.equals(txtPassword.getText())) {
             if (role.equals("Customer")) {
                 lblStatus.setText("Login Customer Succes");
