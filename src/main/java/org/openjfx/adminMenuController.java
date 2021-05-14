@@ -46,6 +46,16 @@ public class adminMenuController {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    public void modifyCar (javafx.event.ActionEvent actionEvent) throws Exception{
+
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/modifyCar.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     public void DeleteCar (javafx.event.ActionEvent actionEvent) throws Exception{
 
         Stage primaryStage = new Stage();
