@@ -12,6 +12,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -27,16 +29,23 @@ public class deleteCarController {
     private Label lblStatus;
     int deleted =0;
 
-    public void Delete(javafx.event.ActionEvent actionEvent) throws Exception {
+
+    public void Delete (javafx.event.ActionEvent actionEvent) throws Exception {
 
         JSONParser parser = new JSONParser();
+
         try (FileReader reader = new FileReader("src/main/resources/DataBase/CarsData.json")) {
             Object obj = parser.parse(reader);
 
-            JSONArray cars = (JSONArray) obj;
-            cars.forEach(car -> {
+            JSONArray users = (JSONArray) obj;
+            users.forEach(usr -> {
                 try {
-                    parseCarObject((JSONObject) car);
+                    FileWriter file = new FileWriter("src/main/resources/DataBase/CarsData.json");
+                    if(!usr.equals(null)) {
+                        parseUserObject((JSONObject) usr);
+                        file.write(users.toJSONString());
+                        file.close();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -50,21 +59,24 @@ public class deleteCarController {
         }
         if(deleted == 0)
         {
-            lblStatus.setText("Can NOT delete car!");
+            lblStatus.setText("Incorrect ID!");
         }
+
     }
 
-    public void parseCarObject(JSONObject car) throws Exception {
-        //Get car object within list
-        JSONObject carObject = (JSONObject) car.get("car");
-        String CarID = (String) carObject.get("Id");
-
-        if (CarID.equals(txtId.getText())) {
-
-
-                lblStatus.setText("Deleted!");
-                deleted = 1;
-    } }
+    public void parseUserObject(JSONObject user) throws Exception {
+        //Get employee object within list
+        JSONObject userObject = (JSONObject) user.get("car");
+        if(!userObject.equals(null)){
+        String ID = (String) userObject.get("Id");
+        System.out.println(ID);
+        if(ID.equals(txtId.getText())){
+             System.out.println("DA");
+             user.remove("car");
+             deleted = 1;
+             lblStatus.setText("Car deleted!");
+        }}
+    }
     public void Cancel (javafx.event.ActionEvent actionEvent) throws Exception {
 
         Stage closeLogin = (Stage) cancelButton.getScene().getWindow();
