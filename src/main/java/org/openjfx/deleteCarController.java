@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 public class deleteCarController {
 
@@ -37,13 +38,13 @@ public class deleteCarController {
         try (FileReader reader = new FileReader("src/main/resources/DataBase/CarsData.json")) {
             Object obj = parser.parse(reader);
 
-            JSONArray users = (JSONArray) obj;
-            users.forEach(usr -> {
+            JSONArray cars = (JSONArray) obj;
+            cars.forEach(car -> {
                 try {
                     FileWriter file = new FileWriter("src/main/resources/DataBase/CarsData.json");
-                    if(!usr.equals(null)) {
-                        parseUserObject((JSONObject) usr);
-                        file.write(users.toJSONString());
+                    if(Objects.nonNull(car)) {
+                        parseCarObject((JSONObject) car);
+                        file.write(cars.toJSONString());
                         file.close();
                     }
                 } catch (Exception e) {
@@ -64,15 +65,14 @@ public class deleteCarController {
 
     }
 
-    public void parseUserObject(JSONObject user) throws Exception {
+    public void parseCarObject(JSONObject car) throws Exception {
         //Get employee object within list
-        JSONObject userObject = (JSONObject) user.get("car");
-        if(!userObject.equals(null)){
-        String ID = (String) userObject.get("Id");
-        System.out.println(ID);
+        JSONObject carObject = (JSONObject) car.get("car");
+        if(Objects.nonNull(carObject)){
+        String ID = (String) carObject.get("Id");
+
         if(ID.equals(txtId.getText())){
-             System.out.println("DA");
-             user.remove("car");
+             car.remove("car");
              deleted = 1;
              lblStatus.setText("Car deleted!");
         }}
@@ -82,6 +82,5 @@ public class deleteCarController {
         Stage closeLogin = (Stage) cancelButton.getScene().getWindow();
         closeLogin.close();
     }
-
 
 }

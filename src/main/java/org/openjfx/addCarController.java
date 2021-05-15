@@ -51,57 +51,6 @@ public class addCarController {
         Gearbox.setItems(choiceBoxListGearbox);
     }
 
-//    public void AddCar(javafx.event.ActionEvent actionEvent) throws Exception  {
-//
-//        String Brand = txtBrand.getText();
-//        String Model = txtModel.getText();
-//        String Year = txtYear.getText();
-//        String Description = txtDescription.getText();
-//        String EnginePower = txtEnginePower.getText();
-//        String RegNr = txtRegNr.getText();
-//        String AlimentationType = Alimentation.getValue();
-//        String GearBoxType = Gearbox.getValue();
-//
-//        if (Brand.isEmpty() || Model.isEmpty() || Year.isEmpty() || RegNr.isEmpty() || Description.isEmpty() || EnginePower.isEmpty() ||
-//                (!AlimentationType.equals("Diesel") && !AlimentationType.equals("Gasoline") && !AlimentationType.equals("Electric")) ||
-//                (!GearBoxType.equals("Manual") && !GearBoxType.equals("Automatic"))) {
-//            lblStatus.setText("All fields must be completed!");
-//        } else {
-//            Random rand = new Random();
-//            int ID = rand.nextInt(1000);
-//            String strID = String.valueOf(ID);
-//
-//            JSONObject obj = new JSONObject();
-//            JSONArray jrr = new JSONArray();
-//            JSONParser jp = new JSONParser();
-//            try {
-//                FileReader file = new FileReader("src/main/resources/DataBase/CarsData.json");
-//                jrr = (JSONArray) jp.parse(file);
-//            } catch (Exception ex) {
-//                lblStatus.setText("Error!");
-//            }
-//
-//            obj.put("Id", strID);
-//            obj.put("Brand", Brand);
-//            obj.put("Model", Model);
-//            obj.put("Year", Year);
-//            obj.put("RegNr", RegNr);
-//            obj.put("Description", Description);
-//            obj.put("EnginePower", EnginePower);
-//            obj.put("Alimentation", AlimentationType);
-//            obj.put("Gearbox", GearBoxType);
-//
-//            jrr.add(obj);
-//            try {
-//                FileWriter file = new FileWriter("src/main/resources/DataBase/CarsData.json");
-//                file.write(jrr.toJSONString());
-//                file.close();
-//            } catch (Exception ex) {
-//                lblStatus.setText("Error!");
-//            }
-//            lblStatus.setText("Car Added!");
-//        }
-//    }
     public void AddCar(javafx.event.ActionEvent actionEvent) throws Exception {
 
         String Brand = txtBrand.getText();
