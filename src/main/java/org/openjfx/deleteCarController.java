@@ -74,7 +74,7 @@ public class deleteCarController {
         if(ID.equals(txtId.getText())){
              car.remove("car");
              deleted = 1;
-             lblStatus.setText("Car deleted!");
+             lblStatus.setText("Car deleted! Please REFRESH TABLE");
         }}
     }
     public void Cancel (javafx.event.ActionEvent actionEvent) throws Exception {

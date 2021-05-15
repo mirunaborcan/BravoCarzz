@@ -125,11 +125,11 @@ public class modifyCarController {
                     carObject.put("Description", Description);
                     modified = 1;
                 }
-                if(!Description.isEmpty()){
+                if(!EnginePower.isEmpty()){
                     carObject.put("EnginePower", EnginePower);
                     modified = 1;
                 }
-                if(AlimentationType.equals("Diesel") || AlimentationType.equals("Gasoline") || !AlimentationType.equals("Electric")){
+                if(AlimentationType.equals("Diesel") || AlimentationType.equals("Gasoline") || AlimentationType.equals("Electric")){
                     carObject.put("Alimentation", AlimentationType);
                     modified = 1;
                 }
@@ -142,7 +142,7 @@ public class modifyCarController {
                     modified = 1;
                 }
 
-                lblStatus.setText("Car modified!");
+                lblStatus.setText("Car modified! Please REFRESH TABLE!");
             }}
     }
     public void Cancel (javafx.event.ActionEvent actionEvent) throws Exception {

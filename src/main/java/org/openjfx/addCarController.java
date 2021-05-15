@@ -103,7 +103,7 @@ public class addCarController {
                 file.write(jrr.toJSONString());
                 file.close();
 
-                lblStatus.setText("Car Added!");
+                lblStatus.setText("Car Added! Please REFRESH TABLE!");
 
             } catch (Exception ex) {
                 lblStatus.setText("Error!");
