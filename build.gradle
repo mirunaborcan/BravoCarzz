@@ -23,7 +23,6 @@ dependencies {
     implementation group: 'org.json', name: 'json', version: '20210307'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 
-
 }
 
 test {
@@ -32,7 +31,20 @@ test {
 
 javafx {
     modules = [ 'javafx.controls', 'javafx.fxml']
-    version = '16'
+    version = '11'
 }
 
-mainClassName = 'org.openjfx.Main'
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    manifest {
+        attributes(
+                'Implementation-Title': 'Jar Making Exaple',
+                "Main-Class": "org.openjfx.Main"
+        )
+    }
+    destinationDirectory = file("$rootDir/my-jar")
+    archivesBaseName = 'BravoCarzzApp'
+}
