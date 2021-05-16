@@ -1,1 +1,3 @@
-{ }
+[{"car": { "Id": "372", "Renter": "mirunaborcan", "PickUp": "2021-04-27", "DropOff": "2021-04-28"}},
+  {"car": { "Id": "967", "Renter": "mirunaborcan", "PickUp": "2021-05-10", "DropOff": "2021-05-15"}},
+  {"car": { "Id": "967", "Renter": "mirunaborcan", "PickUp": "2021-05-26", "DropOff": "2021-05-29"}}]

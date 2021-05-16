@@ -8,9 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,8 +19,10 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -63,6 +63,16 @@ public class customerMenuController implements Initializable {
 
     @FXML
     private TableColumn<GetAllCarsTable, String> gearbox;
+
+    @FXML
+    private DatePicker pickUp;
+    @FXML
+    private DatePicker dropOff;
+    @FXML
+    private TextField txtID;
+    @FXML
+    private Label stsLabel;
+    int available = 1;
 
     ObservableList<GetAllCarsTable> listCars = FXCollections.observableArrayList();
 
@@ -145,7 +155,66 @@ public class customerMenuController implements Initializable {
 
     }
 
-    public void logOut (javafx.event.ActionEvent actionEvent) throws Exception {
+    public void Check (javafx.event.ActionEvent actionEvent) throws Exception {
+
+        JSONParser parser = new JSONParser();
+
+        try (FileReader reader = new FileReader("src/main/resources/DataBase/RentedCars.json")) {
+            Object obj = parser.parse(reader);
+
+            JSONArray cars = (JSONArray) obj;
+            cars.forEach(car -> {
+                try {
+
+                        parseRentedObject((JSONObject) car);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(available == 1 ) {
+
+            Stage primaryStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/rentCar.fxml"));
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+
+    }
+    public void parseRentedObject(JSONObject car) throws Exception {
+
+        JSONObject carObject = (JSONObject) car.get("car");
+        String ID = (String) carObject.get("Id");
+        LocalDate pickUpDate = pickUp.getValue();
+        LocalDate dropOffDate = dropOff.getValue();
+
+        if (ID.equals(txtID.getText())) {
+            String pickUp = (String) carObject.get("PickUp");
+            String dropOff = (String) carObject.get("DropOff");
+
+            LocalDate dt_pick = LocalDate.parse(pickUp);
+            LocalDate dt_drop = LocalDate.parse(dropOff);
+            if(pickUpDate.compareTo(dt_pick) >= 0 && pickUpDate.compareTo(dt_drop)<= 0){
+
+                available = 0;
+                stsLabel.setText("Dates unavailable! Check other dates!");
+            }
+            if(dropOffDate.compareTo(dt_pick) >= 0 && pickUpDate.compareTo(dt_pick) <= 0 ){
+                available = 0;
+                stsLabel.setText("Dates unavailable! Check other dates!");
+            }
+        }
+    }
+
+        public void logOut (javafx.event.ActionEvent actionEvent) throws Exception {
 
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
