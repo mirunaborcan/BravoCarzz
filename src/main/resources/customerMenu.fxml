@@ -24,7 +24,7 @@
                   <Font name="Copperplate Gothic Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="myListButton" layoutX="-1.0" layoutY="170.0" mnemonicParsing="false" onAction="#customerButton" prefHeight="46.0" prefWidth="176.0" style="-fx-background-color: #d41118;" text="My List" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Button fx:id="myListButton" layoutX="-1.0" layoutY="170.0" mnemonicParsing="false" onAction="#customerButton" prefHeight="46.0" prefWidth="176.0" style="-fx-background-color: #d41118;" text="View OFFERS" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <font>
                   <Font name="Copperplate Gothic Bold" size="18.0" />
                </font>
@@ -89,12 +89,11 @@
                      </image>
                   </ImageView>
                </children></Pane>
-            <Pane fx:id="pn_myList" prefHeight="406.0" prefWidth="665.0" style="-fx-background-color: green;" />
             <Pane fx:id="pn_RentCar" prefHeight="406.0" prefWidth="665.0" style="-fx-background-color: white;">
                <children>
                   <ImageView fitHeight="229.0" fitWidth="395.0" layoutY="177.0" pickOnBounds="true">
                      <image>
-                        <Image url="@Images/rent1.jpg" />
+                        <Image url="@Images/rent.jpg" />
                      </image>
                   </ImageView>
                   <Text layoutX="214.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rent Car with ID">
@@ -132,6 +131,15 @@
                      </font>
                   </Button>
                </children></Pane>
+            <Pane fx:id="pn_myList" prefHeight="406.0" prefWidth="665.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="406.0" fitWidth="648.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/pricelist.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
+            <Pane prefHeight="406.0" prefWidth="666.0" style="-fx-background-color: white;" />
          </children>
       </AnchorPane>
    </center>
