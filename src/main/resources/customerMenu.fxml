@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -50,7 +54,7 @@
          <children>
             <Pane fx:id="pn_viewCars" prefHeight="406.0" prefWidth="664.0" style="-fx-background-color: white;">
                <children>
-                  <TableView fx:id="table" layoutX="-1.0" prefHeight="406.0" prefWidth="666.0">
+                  <TableView fx:id="table" prefHeight="275.0" prefWidth="665.0">
                      <columns>
                         <TableColumn fx:id="id" prefWidth="40.0" resizable="false" text="ID" />
                         <TableColumn fx:id="brand" resizable="false" text="BRAND" />
@@ -63,9 +67,59 @@
                         <TableColumn fx:id="gearbox" prefWidth="75.0" resizable="false" text="GEARBOX" />
                      </columns>
                   </TableView>
+                  <ImageView fitHeight="114.0" fitWidth="158.0" layoutX="332.0" layoutY="278.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Images/logan.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="105.0" fitWidth="187.0" layoutX="478.0" layoutY="294.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Images/renault.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="118.0" fitWidth="191.0" layoutX="148.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/audi-a7-tfsie-white-background-1.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="157.0" layoutX="1.0" layoutY="287.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Images/nissan.jpg" />
+                     </image>
+                  </ImageView>
                </children></Pane>
-            <Pane fx:id="pn_RentCar" prefHeight="406.0" prefWidth="665.0" style="-fx-background-color: purple;" />
             <Pane fx:id="pn_myList" prefHeight="406.0" prefWidth="665.0" style="-fx-background-color: green;" />
+            <Pane fx:id="pn_RentCar" prefHeight="406.0" prefWidth="665.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="279.0" fitWidth="665.0" layoutY="127.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Images/rent.jpg" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="214.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rent Car with ID">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="460.0" layoutY="33.0" prefHeight="25.0" prefWidth="98.0" />
+                  <Text layoutX="426.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drop Off Date">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="109.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick Up Date">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <DatePicker layoutX="80.0" layoutY="115.0" />
+                  <DatePicker layoutX="405.0" layoutY="115.0" />
+                  <Button layoutX="416.0" layoutY="358.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="152.0" text="Check availability">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children></Pane>
          </children>
       </AnchorPane>
    </center>
