@@ -38,7 +38,7 @@
                   <Font name="Copperplate Gothic Bold" size="13.0" />
                </font>
             </Text>
-            <Button fx:id="logOutButton" layoutX="45.0" layoutY="381.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #d41118;" text="Log Out" textFill="WHITE" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="32.0">
+            <Button fx:id="logOutButton" layoutX="37.0" layoutY="380.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #d41118;" text="Log Out" textFill="WHITE" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="40.0">
                <font>
                   <Font name="Copperplate Gothic Bold" size="12.0" />
                </font>

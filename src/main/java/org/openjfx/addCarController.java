@@ -93,6 +93,7 @@ public class addCarController {
             carDetails.put("Gearbox", GearBoxType);
 
 
+
             JSONObject carObject = new JSONObject();
 
             carObject.put("car", carDetails);
