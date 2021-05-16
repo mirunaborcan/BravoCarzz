@@ -17,6 +17,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class customerMenuController implements Initializable {
@@ -72,7 +74,12 @@ public class customerMenuController implements Initializable {
     private TextField txtID;
     @FXML
     private Label stsLabel;
+    @FXML
+    private TextField txtUser;
+    @FXML
+    private Button rentButton;
     int available = 1;
+    int empty = 0;
 
     ObservableList<GetAllCarsTable> listCars = FXCollections.observableArrayList();
 
@@ -154,9 +161,8 @@ public class customerMenuController implements Initializable {
         }
 
     }
-
     public void Check (javafx.event.ActionEvent actionEvent) throws Exception {
-
+         available=1;
         JSONParser parser = new JSONParser();
 
         try (FileReader reader = new FileReader("src/main/resources/DataBase/RentedCars.json")) {
@@ -166,7 +172,7 @@ public class customerMenuController implements Initializable {
             cars.forEach(car -> {
                 try {
 
-                        parseRentedObject((JSONObject) car);
+                    parseRentedObject((JSONObject) car);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -181,11 +187,7 @@ public class customerMenuController implements Initializable {
         }
         if(available == 1 ) {
 
-            Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/rentCar.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            stsLabel.setText("Available!");
         }
 
     }
@@ -195,26 +197,83 @@ public class customerMenuController implements Initializable {
         String ID = (String) carObject.get("Id");
         LocalDate pickUpDate = pickUp.getValue();
         LocalDate dropOffDate = dropOff.getValue();
+        if(txtID.getText().isEmpty()){
 
-        if (ID.equals(txtID.getText())) {
-            String pickUp = (String) carObject.get("PickUp");
-            String dropOff = (String) carObject.get("DropOff");
+            stsLabel.setText("Incorrect ID!");
+        }
+        else {
 
-            LocalDate dt_pick = LocalDate.parse(pickUp);
-            LocalDate dt_drop = LocalDate.parse(dropOff);
-            if(pickUpDate.compareTo(dt_pick) >= 0 && pickUpDate.compareTo(dt_drop)<= 0){
+            if (ID.equals(txtID.getText())) {
 
-                available = 0;
-                stsLabel.setText("Dates unavailable! Check other dates!");
+                String pickUp = (String) carObject.get("PickUp");
+                String dropOff = (String) carObject.get("DropOff");
+                LocalDate dt_pick = LocalDate.parse(pickUp);
+                LocalDate dt_drop = LocalDate.parse(dropOff);
+                if(Objects.nonNull(pickUpDate) && Objects.nonNull(dropOffDate)) {
+
+                    if (pickUpDate.compareTo(dt_pick) >= 0 && pickUpDate.compareTo(dt_drop) <= 0) {
+
+                        available = 0;
+                        stsLabel.setText("Dates unavailable! Check other dates!");
+                    }
+                    else
+                    if (dropOffDate.compareTo(dt_pick) >= 0 && pickUpDate.compareTo(dt_pick) <= 0) {
+                            available = 0;
+                            stsLabel.setText("Dates unavailable! Check other dates!");
+                    }
+
+                }
+                else {
+                    available = 0;
+                    stsLabel.setText("Choose pick up and drop off dates!");
+                }
             }
-            if(dropOffDate.compareTo(dt_pick) >= 0 && pickUpDate.compareTo(dt_pick) <= 0 ){
-                available = 0;
-                stsLabel.setText("Dates unavailable! Check other dates!");
-            }
+
         }
     }
 
-        public void logOut (javafx.event.ActionEvent actionEvent) throws Exception {
+
+    public void RentCar (javafx.event.ActionEvent actionEvent) throws Exception{
+
+        String id = txtID.getText();
+        String user = txtUser.getText();
+        String pick = String.valueOf(pickUp.getValue());
+        String drop = String.valueOf(dropOff.getValue());
+
+            JSONObject carDetails = new JSONObject();
+            JSONArray jrr = new JSONArray();
+            JSONParser jp = new JSONParser();
+            try {
+                FileReader file = new FileReader("src/main/resources/DataBase/RentedCars.json");
+                jrr = (JSONArray) jp.parse(file);
+            } catch (Exception ex) {
+                stsLabel.setText("Error!");
+            }
+
+            carDetails.put("Id", id);
+            carDetails.put("Renter", user);
+            carDetails.put("PickUp", pick);
+            carDetails.put("DropOff", drop);
+
+            JSONObject carObject = new JSONObject();
+
+            carObject.put("car", carDetails);
+
+            jrr.add(carObject);
+            try {
+                FileWriter file = new FileWriter("src/main/resources/DataBase/RentedCars.json");
+                file.write(jrr.toJSONString());
+                file.close();
+
+                stsLabel.setText("Rented");
+
+            } catch (Exception ex) {
+                stsLabel.setText("Error!");
+            }
+
+    }
+
+    public void logOut (javafx.event.ActionEvent actionEvent) throws Exception {
 
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));

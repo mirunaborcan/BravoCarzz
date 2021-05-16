@@ -92,9 +92,9 @@
             <Pane fx:id="pn_myList" prefHeight="406.0" prefWidth="665.0" style="-fx-background-color: green;" />
             <Pane fx:id="pn_RentCar" prefHeight="406.0" prefWidth="665.0" style="-fx-background-color: white;">
                <children>
-                  <ImageView fitHeight="279.0" fitWidth="665.0" layoutY="127.0" pickOnBounds="true">
+                  <ImageView fitHeight="229.0" fitWidth="395.0" layoutY="177.0" pickOnBounds="true">
                      <image>
-                        <Image url="@Images/rent.jpg" />
+                        <Image url="@Images/rent1.jpg" />
                      </image>
                   </ImageView>
                   <Text layoutX="214.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rent Car with ID">
@@ -115,16 +115,22 @@
                   </Text>
                   <DatePicker fx:id="pickUp" layoutX="80.0" layoutY="115.0" />
                   <DatePicker fx:id="dropOff" layoutX="405.0" layoutY="115.0" />
-                  <Button fx:id="checkButon" layoutX="416.0" layoutY="358.0" mnemonicParsing="false" onAction="#Check" prefHeight="26.0" prefWidth="152.0" text="Check availability">
+                  <Button fx:id="checkButon" layoutX="90.0" layoutY="163.0" mnemonicParsing="false" onAction="#Check" prefHeight="26.0" prefWidth="152.0" text="Check availability">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Label fx:id="stsLabel" layoutX="223.0" layoutY="350.0" prefHeight="40.0" prefWidth="185.0" textAlignment="CENTER" wrapText="true">
+                  <Label fx:id="stsLabel" layoutX="358.0" layoutY="156.0" prefHeight="40.0" prefWidth="271.0" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="15.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="txtUser" layoutX="426.0" layoutY="301.0" prefHeight="25.0" prefWidth="197.0" promptText="Username confirmation" />
+                  <Button fx:id="rentButton" layoutX="469.0" layoutY="339.0" mnemonicParsing="false" onAction="#RentCar" prefHeight="40.0" prefWidth="110.0" text="RENT">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children></Pane>
          </children>
       </AnchorPane>
