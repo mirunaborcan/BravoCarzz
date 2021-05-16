@@ -48,6 +48,19 @@
    <center>
       <AnchorPane prefHeight="417.0" prefWidth="571.0" BorderPane.alignment="CENTER">
          <children>
+            <Pane fx:id="pn_viewCustomers" prefHeight="430.0" prefWidth="668.0" style="-fx-background-color: white;">
+               <children>
+                  <TableView fx:id="userTable" layoutY="-1.0" prefHeight="430.0" prefWidth="668.0">
+                    <columns>
+                      <TableColumn fx:id="FirstName" prefWidth="101.0" resizable="false" text="Fisrt name" />
+                      <TableColumn fx:id="LastName" prefWidth="116.0" text="Last Name" />
+                        <TableColumn fx:id="PhoneNumber" prefWidth="129.0" resizable="false" text="PhoneNumber" />
+                        <TableColumn fx:id="Email" prefWidth="189.0" text="Email" />
+                        <TableColumn fx:id="UserName" minWidth="0.0" prefWidth="132.0" resizable="false" text="Username" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
             <Pane fx:id="pn_allCars" layoutX="2.0" layoutY="-2.0" prefHeight="430.0" prefWidth="665.0" style="-fx-background-color: white;">
                <children>
                   <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#AddCar" prefHeight="25.0" prefWidth="80.0" text="Add Car">
@@ -85,29 +98,18 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="pn_viewCustomers" prefHeight="430.0" prefWidth="668.0" style="-fx-background-color: white;">
+            <Pane fx:id="pn_rentedCars" layoutY="-3.0" prefHeight="430.0" prefWidth="668.0" style="-fx-background-color: white;">
                <children>
-                  <TableView fx:id="userTable" layoutY="-1.0" prefHeight="430.0" prefWidth="668.0">
+                  <TableView fx:id="tableRented" layoutY="1.0" prefHeight="430.0" prefWidth="667.0">
                     <columns>
-                      <TableColumn fx:id="FirstName" prefWidth="101.0" resizable="false" text="Fisrt name" />
-                      <TableColumn fx:id="LastName" prefWidth="116.0" text="Last Name" />
-                        <TableColumn fx:id="PhoneNumber" prefWidth="129.0" resizable="false" text="PhoneNumber" />
-                        <TableColumn fx:id="Email" prefWidth="189.0" text="Email" />
-                        <TableColumn fx:id="UserName" minWidth="0.0" prefWidth="132.0" resizable="false" text="Username" />
-                    </columns>
-                  </TableView>
-               </children>
-            </Pane>
-            <Pane prefHeight="430.0" prefWidth="669.0" style="-fx-background-color: white;" />
-            <Pane fx:id="pn_rentedCars" layoutY="-3.0" prefHeight="430.0" prefWidth="668.0" style="-fx-background-color: teal;">
-               <children>
-                  <TableView prefHeight="430.0" prefWidth="670.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="idRented" prefWidth="75.0" resizable="false" text="ID" />
+                      <TableColumn fx:id="renter" prefWidth="243.0" resizable="false" text="Renter" />
+                        <TableColumn fx:id="pickDate" prefWidth="165.0" resizable="false" text="Pick Up date" />
+                        <TableColumn fx:id="dropDate" prefWidth="183.0" resizable="false" text="Drop Off date" />
                     </columns>
                   </TableView>
                </children></Pane>
+            <Pane prefHeight="430.0" prefWidth="668.0" style="-fx-background-color: white;" />
          </children>
       </AnchorPane>
    </center>

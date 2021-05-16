@@ -98,16 +98,35 @@ public class adminMenuController implements Initializable {
     @FXML
     private TableColumn<GetAllUserTable, String> UserName;
 
+    @FXML
+    private TableView<GetAllRented> tableRented;
+
+    @FXML
+    private TableColumn<GetAllRented, String> idRented;
+
+    @FXML
+    private TableColumn<GetAllRented, String> renter;
+
+    @FXML
+    private TableColumn<GetAllRented, String> pickDate;
+
+    @FXML
+    private TableColumn<GetAllRented, String> dropDate;
+
 
 
     ObservableList<GetAllCarsTable> listCars = FXCollections.observableArrayList();
     ObservableList<GetAllUserTable> listUser = FXCollections.observableArrayList();
+    ObservableList<GetAllRented> listRented = FXCollections.observableArrayList();
 
     public void addCarToTable(GetAllCarsTable car) {
         listCars.add(car);
     }
     public void addUserToTable(GetAllUserTable user) {
         listUser.add(user);
+    }
+    public void addRentedToTable(GetAllRented rent) {
+        listRented.add(rent);
     }
 
     @Override
@@ -155,6 +174,25 @@ public class adminMenuController implements Initializable {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        JSONParser parserRent = new JSONParser();
+        try (FileReader readerRent = new FileReader("src/main/resources/DataBase/RentedCars.json")) {
+            Object objRent = parserRent.parse(readerRent);
+
+            JSONArray renters = (JSONArray) objRent;
+            renters.forEach(rnt -> {
+                try {
+                    parseRentObject((JSONObject) rnt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         id.setCellValueFactory(new PropertyValueFactory<GetAllCarsTable,String>("id"));
         brand.setCellValueFactory(new PropertyValueFactory<GetAllCarsTable,String>("brand"));
@@ -175,6 +213,14 @@ public class adminMenuController implements Initializable {
         UserName.setCellValueFactory(new PropertyValueFactory<GetAllUserTable,String>("UserName"));
 
         userTable.setItems(listUser);
+
+        idRented.setCellValueFactory(new PropertyValueFactory<GetAllRented,String>("idRented"));
+        renter.setCellValueFactory(new PropertyValueFactory<GetAllRented, String>("renter"));
+        pickDate.setCellValueFactory(new PropertyValueFactory<GetAllRented, String>("pickDate"));
+        dropDate.setCellValueFactory(new PropertyValueFactory<GetAllRented, String>("dropDate"));
+
+
+        tableRented.setItems(listRented);
 
     }
     public void parseCarObject(JSONObject car) throws Exception {
@@ -209,6 +255,22 @@ public class adminMenuController implements Initializable {
 
             GetAllUserTable row = new GetAllUserTable(FirstName, LastName, PhoneNumber, Email, UserName);
             addUserToTable(row);
+        }
+    }
+    public void parseRentObject(JSONObject user) throws Exception {
+
+        JSONObject userObject = (JSONObject) user.get("car");
+
+        if(Objects.nonNull(userObject)) {
+            String id = (String) userObject.get("Id");
+            String renter = (String) userObject.get("Renter");
+            String dt_pick = (String) userObject.get("PickUp");
+            String dt_drop = (String) userObject.get("DropOff");
+
+
+
+            GetAllRented row = new GetAllRented(id, renter, dt_pick, dt_drop);
+            addRentedToTable(row);
         }
     }
 
